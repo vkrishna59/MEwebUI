@@ -9,7 +9,7 @@ window.onload = function () {
 const EvtCollate = () => {
     console.log("Hello")
     var divContainer = document.getElementById("iframe");
-    divContainer.style.width="70%"
+    divContainer.style.width="60%"
 
     var divContainer = document.getElementById("smartcollator");
     divContainer.style.display="block"
@@ -75,7 +75,7 @@ const EvtCollate = () => {
 
     const EvtEvent = () => {
         var divContainer = document.getElementById("iframe");
-        divContainer.style.width="70%"
+        divContainer.style.width="60%"
 
         var h=document.getElementById("SmartPod")
         h.style.display="block"
