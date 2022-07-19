@@ -66,6 +66,7 @@
     font-family: "Open Sans", Sans-serif;
     font-weight: 200;
     text-transform: uppercase;
+    text-align: center !important;
   }
 
   tr {
