@@ -8,9 +8,10 @@
 </head>
 
 <body style="background-color: #dfe3f8;">
+  <div id="overlay"></div>
     <div class="container2">
         <img src="./iA_Logo.png" style="float: right; margin-top: 0.2%;" width="100" height="50" alt="">
-        <h3 style="margin-left: 45%;margin-top: 1%;" class="heading">Client's View</h3>
+        <h3 style="margin-left: 42%;margin-top: 1%;" class="heading">Machine Emulator Web UI</h3>
     </div>
     <br>
     <div class="topnav">
@@ -25,6 +26,12 @@
       </div>
       <div class="body" >
 
+        <div class="modal" id="modal">
+          <div class="modal-header" id="modal-header"></div>
+          <div class="modal-body" style="white-space: pre-wrap;" id="modal-body"></div>
+          <div class="modal-foot" style="margin-left: 80%;" id="modal-foot"></div>
+        </div>
+
         <div class="modalSP" id="modalSP">
             <div class="modal-headerSP" id="modal-headerSP">
                 <button type="button" data-dismiss="modalSP" style="float: right;" class="btn-close btn-close-black" onclick="closebtnSP()" aria-label="Close">&times;</button>
@@ -38,7 +45,9 @@
     
         </div>
 
-        <iframe src="http://128.226.74.127:443/" id="iframe" class="iframe" frameborder="0"></iframe>
+        <!-- <iframe src="http://128.226.74.127:443/" id="iframe" class="iframe" frameborder="0"></iframe> -->
+        <iframe src="http://localhost/" id="iframe" class="iframe" frameborder="0"></iframe>
+
         
         <div class="smartcollator" id="smartcollator" style="display: none;">
             <h4 style="margin-left:72%;margin-top: 0.5%;">SmartCollator Station</h4>
@@ -59,7 +68,7 @@
         </div>
 
         <div class="historicaldataupload" id="historicaldataupload" style="display: none;">
-            <h3>Historical Data Upload</h3>
+            <h3 style="PADDING-TOP: 3%;">Historical Data Upload</h3>
             <div class="uploadfile">
                 <br>
                 <input type="file" class="designbtn" id="fileUpload" accept=".xlsx, .xls, .csv" />
@@ -72,7 +81,7 @@
         </div>
 
         <div class="ResolveErrors" id="ResolveErrors" style="display: none;" >
-
+          <h3 style="PADDING-TOP: 1%;">Resolve Errors</h3>
             <div class="stuckdiv">
                 <button class="accordion" id="CPSmartPod" >SmartPod</button>
                   <div class="panel">

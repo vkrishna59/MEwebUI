@@ -1,9 +1,10 @@
 window.onload = function () {
     console.log("started the application >>>");
-    // setInterval(EvtEvent,4000); 
-    // setInterval(ControlPanelThread,10000);
-    // setInterval(EvtCollate,50000);
+    setInterval(smartPodUpdate,5000); 
+    setInterval(ControlPanelThread,10000);
+    setInterval(smartcollatorUpdate,5000);
 }
+
 
 
 const EvtCollate = () => {
@@ -72,7 +73,51 @@ const EvtCollate = () => {
         console.log(err);
       });
     };
-
+    const smartcollatorUpdate=()=>{
+      fetch("http://localhost:3000/EvtCollate", {
+        method: "GET", // *GET, POST, PUT, DELETE, etc.
+      })
+        .then((response) => {
+          console.log("Calling EvtCollate API");
+          console.log(response);
+          return response.json();
+        })
+        .then((data) => {
+          console.log("EvtCollate Data  -->",data)
+          var col=[]
+          for (var i = 0; i < data.length; i++) {
+              for (var key in data[i]) {
+                  if (col.indexOf(key) === -1) {
+                      col.push(key);
+                  }
+              }
+          }
+         // CREATE DYNAMIC TABLE.
+         var table = document.createElement("table");
+         // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+         var tr = table.insertRow(-1);                   // TABLE ROW.
+        for (var i = 0; i < col.length; i++) {
+            var th = document.createElement("th");      // TABLE HEADER.
+            th.innerHTML = col[i];
+            tr.appendChild(th);
+        }
+        // ADD JSON DATA TO THE TABLE AS ROWS.
+        for (var i = 0; i < data.length; i++) {
+            tr = table.insertRow(-1);
+            for (var j = 0; j < col.length; j++) {
+                var tabCell = tr.insertCell(-1);
+                tabCell.innerHTML = data[i][col[j]];
+            }
+        }
+        // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+        var divContainer = document.getElementById("showCollateData");
+        divContainer.innerHTML = "";
+        divContainer.appendChild(table);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
     const EvtEvent = () => {
         var divContainer = document.getElementById("iframe");
         divContainer.style.width="60%"
@@ -137,7 +182,52 @@ const EvtCollate = () => {
             console.log(err);
           });
         };
-
+  const smartPodUpdate=()=>{
+    fetch("http://localhost:3000/EvtEvent", {
+            method: "GET", // *GET, POST, PUT, DELETE, etc.
+          })
+            .then((response) => {
+              console.log("Calling EvtEvent API");
+              console.log(response);
+              return response.json();
+            })
+            .then((data) => {
+              console.log("EvtEvent Data  -->",data)
+              var col=[]
+              for (var i = 0; i < data.length; i++) {
+                  for (var key in data[i]) {
+                      if (col.indexOf(key) === -1) {
+                          col.push(key);
+                      }
+                  }
+              }
+              
+              // CREATE DYNAMIC TABLE.
+              var table = document.createElement("table");
+              // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+              var tr = table.insertRow(-1);                   // TABLE ROW.
+            for (var i = 0; i < col.length; i++) {
+                var th = document.createElement("th");      // TABLE HEADER.
+                th.innerHTML = col[i];
+                tr.appendChild(th);
+            }
+            // ADD JSON DATA TO THE TABLE AS ROWS.
+            for (var i = 0; i < data.length; i++) {
+                tr = table.insertRow(-1);
+                for (var j = 0; j < col.length; j++) {
+                    var tabCell = tr.insertCell(-1);
+                    tabCell.innerHTML = data[i][col[j]];
+                }
+            }
+            // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+            var divContainer = document.getElementById("showData");
+            divContainer.innerHTML = "";
+            divContainer.appendChild(table);
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+  };
 
     function ConfigurableModels(){
 
@@ -167,8 +257,9 @@ const EvtCollate = () => {
         var divContainer = document.getElementById("iframe");
         divContainer.style.width="70%"
 
-        var divContainer = document.getElementById("historicaldataupload");
-        divContainer.style.display="block"
+        var historicaldataupload = document.getElementById("historicaldataupload");
+        historicaldataupload.style.display="block"
+        historicaldataupload.style.marginLeft="72%"
 
         var smartcollator = document.getElementById("smartcollator");
         smartcollator.style.display="none"
@@ -185,7 +276,7 @@ const EvtCollate = () => {
 
     function resolveErrors () {
         var divContainer = document.getElementById("iframe");
-        divContainer.style.width="70%"
+        divContainer.style.width="68%"
 
         var divContainer = document.getElementById("ResolveErrors");
         divContainer.style.display="block"
@@ -204,8 +295,8 @@ const EvtCollate = () => {
     }
 
     function closebtn(){
-        var divContainer = document.getElementById("iframe");
-        divContainer.style.width="100%"
+        var iframe = document.getElementById("iframe");
+        iframe.style.width="100%"
 
         var smartcollator = document.getElementById("smartcollator");
         smartcollator.style.display="none"
@@ -507,4 +598,7 @@ const EvtCollate = () => {
       }
       /* Author : Sai Krishna */
       var Alert = new CustomAlert();
+    
+
+
     
