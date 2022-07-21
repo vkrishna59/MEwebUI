@@ -220,13 +220,13 @@
     text-align: center;
   }
 
-  .modal-foot{
-    /* align-content: center; */
-    /* padding: 10px 15px; */
+  /* .modal-foot{
+    align-content: center;
+    padding: 10px 15px;
   }
   .modal-body{
-    /* padding: 10px 15px; */
-  }
+    padding: 10px 15px;
+  } */
 
   #overlay{
     position: fixed;
