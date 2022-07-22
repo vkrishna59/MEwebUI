@@ -1,9 +1,25 @@
 window.onload = function () {
     console.log("started the application >>>");
-    setInterval(smartPodUpdate,5000); 
-    setInterval(ControlPanelThread,10000);
-    setInterval(smartcollatorUpdate,5000);
+    // setInterval(smartPodUpdate,5000); 
+    // setInterval(ControlPanelThread,10000);
+    // setInterval(smartcollatorUpdate,5000);
 }
+
+/* Author : Sai Krishna */
+document.addEventListener("DOMContentLoaded", function(e) {
+  var acc = document.querySelectorAll('a');
+  console.log("a",acc)
+var i;
+// console.log("Lenght of Accordion-->",acc,acc.length)
+for (i = 0; i < acc.length; i++){
+  // console.log(acc[i])
+  acc[i].addEventListener('click',function(){
+    console.log("-->",acc)
+    acc.forEach(a=>a.classList.remove('active'))
+    this.classList.add('active')
+  });
+}
+});
 
 
 
@@ -312,6 +328,9 @@ const EvtCollate = () => {
 
         var ResolveErrors = document.getElementById("ResolveErrors");
         ResolveErrors.style.display="none"
+
+        var acc = document.querySelectorAll('a');
+        acc.forEach(a=>a.classList.remove('active'))
     }
 
 
