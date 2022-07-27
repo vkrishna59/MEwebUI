@@ -238,3 +238,21 @@
     visibility: hidden;
 
   }
+
+  .table1{
+    width: 30%;
+  }
+  .caption {
+    display: table-caption !important;
+    text-align: center;
+    caption-side:top;
+    /* background-color: #848dc6; */
+    color: white;
+    border: #000;
+    border: 1px solid rgb(0, 0, 0);
+    background-image: linear-gradient(135deg, #848dc6 10%, #848dc6 100%);
+    color: #fafafa;
+    font-family: "Open Sans", Sans-serif;
+    font-weight: 200;
+    text-transform: uppercase;
+  }

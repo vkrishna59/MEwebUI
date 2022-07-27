@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="ui.css">
 <script src="ui.js"></script>
+<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+<script type="text/javascript" src="//unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
 
 <head>
 
@@ -50,38 +52,75 @@
 
         
         <div class="smartcollator" id="smartcollator" style="display: none;">
-            <h4 style="margin-left:72%;margin-top: 0.5%;">SmartCollator Station</h4>
+            <h4 style="margin-left:72%;margin-top: 0.5%;font-family: 'Poppins', sans-serif; font-size: 18px;font-weight: bold;">SmartCollator Station</h4>
             <p style="float:right; width:40.5%; margin-right: 0.5%;" id="showCollateData"></p>
         </div>
         
         <div class="SmartPod" id="SmartPod" style="display: none;">
-            <h4 style="margin-left:70%;margin-top: 0.5%;">Current Orders in SmartPod Station</h4>
+            <h4 style="margin-left:70%;margin-top: 0.5%;font-family: 'Poppins', sans-serif; font-size: 18px;font-weight: bold;">Current Orders in SmartPod Station</h4>
             <p style="float:right; width:39%" id="showData"></p>
         </div>
 
         <div class="ConfiguarbleModels" id="ConfiguarbleModels" style="display: none;">
-
-            <table>
-                <th style="width: 30%;">Demand-Mix details</th>
-                <th>Hellp</th>
-            </table>
+          <table class="table1" style="size:100%;">
+          <caption class="caption">Demand-Mix Details</caption>
+            <thead>
+              <tr>
+                <th scope="col">OrderType</th>
+                <th scope="col">Count of Orders</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Mix</td>
+                <td><input type="text" name="" id="Mix"></td>
+              </tr>
+              <tr>
+                <td>AutoCol</td>
+                <td><input type="text" name="" id="AutoCol"></td>
+              </tr>
+              <tr>
+                <td>AutoSingle</td>
+                <td><input type="text" name="" id="AutoSingle"></td>
+              </tr>
+              <tr>
+                <td>AutoManual</td>
+                <td><input type="text" name="" id="AutoManual"></td>
+              </tr>
+              <tr>
+                <td>AutoPunch</td>
+                <td><input type="text" name="" id="AutoPunch"></td>
+              </tr>
+            </tbody>
+          </table>
+          <hr>
+          <div class="uploadfile">
+            <br>
+            <input type="file" class="btn" id="fileUpload" accept=".xlsx, .xls, .csv" />
+            <br>
+            <br>
+            <button type="button" id="btn" onclick="Upload()">Upload</button>
+            <button type="button" id="btn">Generate</button>
+            <button type="button" id="btn">Export</button>
+          </div>
+          
         </div>
 
         <div class="historicaldataupload" id="historicaldataupload" style="display: none;">
-            <h3 style="PADDING-TOP: 3%;">Historical Data Upload</h3>
+            <h3 style="PADDING-TOP: 3%;font-family: 'Poppins', sans-serif; font-size: 18px;font-weight: bold;">Historical Data Upload</h3>
             <div class="uploadfile">
+                <!-- <br> -->
+                <input type="file" class="btn" id="fileUpload" accept=".xlsx, .xls, .csv" />
                 <br>
-                <input type="file" class="designbtn" id="fileUpload" accept=".xlsx, .xls, .csv" />
                 <br>
-                <br>
-                <button type="button" id="designbtn" onclick="Upload()">Upload</button>
-                <button type="button" id="designbtn">Generate</button>
-                <button type="button" id="designbtn">Export</button>
+                <button type="button" id="btn" onclick="Upload()">Upload</button>
+                <button type="button" id="btn">Generate</button>
+                <button type="button" id="btn">Export</button>
               </div>
         </div>
 
         <div class="ResolveErrors" id="ResolveErrors" style="display: none;" >
-          <h3 style="PADDING-TOP: 1%;">Resolve Errors</h3>
+          <h3 style="PADDING-TOP: 1%;font-family: 'Poppins', sans-serif; font-size: 18px;font-weight: bold;">Resolve Errors</h3>
             <div class="stuckdiv">
                 <button class="accordion" id="CPSmartPod" >SmartPod</button>
                   <div class="panel">
@@ -123,19 +162,24 @@
                   </button>
                 </div>
               </div>
-              <hr style="height:5px;border-width:0;color:rgb(0, 0, 0);background-color:rgb(0, 0, 0)">
+              <hr style="height:1px;border-width:0;color:rgb(0, 0, 0);background-color:rgb(0, 0, 0)">
               <div >
-                <h3 style="font-family: 'Poppins', sans-serif; font-size: 14px; "> 
-                  Fault Tree Diagrams: 
+                <h3 style="font-family: 'Poppins', sans-serif; font-size: 18px;font-weight: bold;"> 
+                  Fault Tree Diagrams 
                 </h3>
-                  <button onclick="openFTD('SmartPod')">
+                  <button class="btn btn-info" onclick="openFTD('SmartPod')">
                     Fault Tree Diagram for SmartPod
                   </button>
-                  <button onclick="openFTD('SmartCollator')">
+                  <button class="btn btn-info" onclick="openFTD('SmartCollator')">
                     Fault Tree Diagram for SmartCollator
-                  </button> 
-              </div>
+                  </button>
             </div>
+            <hr style="height:1px;border-width:0;color:rgb(0, 0, 0);background-color:rgb(0, 0, 0)">
+            <h3 style="font-family: 'Poppins', sans-serif; font-size: 18px;font-weight: bold;">Download Error Log Report</h3>
+            <input type="date" id="date1">
+            </br>
+            <button type="button" class="btn btn-primary" onclick="submitted()" style="margin-top: 8px">Submit</button>
+        </div>
 
         </div>
       </div>

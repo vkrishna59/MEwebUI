@@ -1,8 +1,8 @@
 window.onload = function () {
     console.log("started the application >>>");
-    // setInterval(smartPodUpdate,5000); 
-    // setInterval(ControlPanelThread,10000);
-    // setInterval(smartcollatorUpdate,5000);
+    setInterval(smartPodUpdate,5000); 
+    setInterval(ControlPanelThread,10000);
+    setInterval(smartcollatorUpdate,5000);
 }
 
 /* Author : Sai Krishna */
@@ -292,10 +292,10 @@ const EvtCollate = () => {
 
     function resolveErrors () {
         var divContainer = document.getElementById("iframe");
-        divContainer.style.width="68%"
+        divContainer.style.width="70%"
 
-        var divContainer = document.getElementById("ResolveErrors");
-        divContainer.style.display="block"
+        var ResolveErrors = document.getElementById("ResolveErrors");
+        ResolveErrors.style.display="block"
 
         var smartcollator = document.getElementById("smartcollator");
         smartcollator.style.display="none"
@@ -613,11 +613,100 @@ const EvtCollate = () => {
             .catch((err) => {
               console.log(err);
             });
+    }
+}
+
+/* Author : Sai Krishna */
+var Alert = new CustomAlert();
+
+function submitted() {
+    fetch("http://localhost:3000/AllEvtError", {
+      method: "GET", // *GET, POST, PUT, DELETE, etc.
+    })
+    .then((response) => {
+      console.log("Calling delEvtError API");
+      console.log(response);
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Data For Excel",data);
+      convertJSONtoExcel(data, 'Evt Error Log')
+      let date = document.getElementById('date1').value
+      console.log(date)
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+function convertJSONtoExcel(data, title) {
+    var arrData = typeof data != 'object' ? JSON.parse(data) : data;
+
+    var CSV = '';
+    //Set Report title in first row or line
+
+    CSV += title+" at "+new Date() + '\r\n';
+    // CSV += new Date() + '\n\n'
+
+    //This condition will generate the Label/Header
+    var row = "";
+
+    //This loop will extract the label from 1st index of on array
+    for (var index in arrData[0]) {
+
+        //Now convert each value to string and comma-seprated
+        row += index + ',';
+    }
+
+    row = row.slice(0, -1);
+
+    //append Label row with line break
+    CSV += row + '\r\n';
+
+    //1st loop is to extract each row
+    for (var i = 0; i < arrData.length; i++) {
+        var row = "";
+
+        //2nd loop will extract each column and convert it in string comma-seprated
+        for (var index in arrData[i]) {
+            row += '"' + arrData[i][index] + '",';
         }
-      }
-      /* Author : Sai Krishna */
-      var Alert = new CustomAlert();
-    
 
+        row.slice(0, row.length - 1);
 
-    
+        //add a line break after each row
+        CSV += row + '\r\n';
+    }
+
+    if (CSV == '') {
+        alert("Invalid data");
+        return;
+    }
+
+    //Generate a file name
+    var fileName = "";
+    //this will remove the blank-spaces from the title and replace it with an underscore
+    fileName += title.replace(/ /g, "_");
+    fileName+="_"+new Date();
+
+    //Initialize file format you want csv or xls
+    var uri = 'data:text/csv;charset=utf-8,' + escape(CSV);
+
+    // Now the little tricky part.
+    // you can use either>> window.open(uri);
+    // but this will not work in some browsers
+    // or you will not get the correct file extension    
+
+    //this trick will generate a temp <a /> tag
+    var link = document.createElement("a");
+    link.href = uri;
+
+    //set the visibility hidden so it will not effect on your web-layout
+    link.style = "visibility:hidden";
+    link.download = fileName + ".csv";
+
+    //this part will append the anchor tag and remove it after automatic click
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
