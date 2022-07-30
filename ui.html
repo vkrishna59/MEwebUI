@@ -3,6 +3,9 @@
 <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
 <script type="text/javascript" src="//unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
 
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <head>
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -16,7 +19,7 @@
         <h3 style="margin-left: 42%;margin-top: 1%;" class="heading">Machine Emulator Web UI</h3>
     </div>
     <br>
-    <div class="topnav" id="topnav">
+    <!-- <div class="topnav" id="topnav">
         <a class="active" onclick="closebtn()" href="javascript:void(0)">Home</a>
         <a href="javascript:void(0)" onclick="EvtCollate()">SmartCollator Station</a>
         <a href="javascript:void(0)" onclick="EvtEvent()">SmartPod Station</a>
@@ -25,7 +28,29 @@
         <a href="javascript:void(0)" onclick="resolveErrors()">Resolve Errors</a>
         <button onclick="closebtn()" style="float: right;margin-top: 0.8%;margin-right: 0.7%;" 
             type="button" class="btn-close btn-close-white" aria-label="Close">&times;</button>
+    </div> -->
+
+    <div class="navbar">
+      <a class="active" onclick="closebtn()" href="javascript:void(0)">Home</a>
+      <div class="subnav">
+        <button class="subnavbtn">Station Testing<i class="fa fa-caret-down" style="margin-left: 8px;"></i></button>
+        <div class="subnav-content">
+          <a href="javascript:void(0)" onclick="EvtEvent()">SmartPod Station</a>
+          <a href="javascript:void(0)" onclick="EvtCollate()">SmartCollator Station</a>
+          <a href="javascript:void(0)" onclick="">Manual Fill</a>
+          <a href="javascript:void(0)" onclick="">Manual Pack</a>
+          <a href="javascript:void(0)" onclick="">Auto Pack</a>
+          <a href="javascript:void(0)" onclick="">Semi Auto Pack</a>
+        </div>
       </div>
+      <a onclick="closebtn()" href="javascript:void(0)">System Testing</a>
+      <a href="javascript:void(0)" onclick="historicalDataUpload()">System Performance Monitoring</a>
+      <a href="javascript:void(0)" onclick="ConfigurableModels()">Configurable Models</a>
+      <button onclick="closebtn()" style="float: right;margin-top: 0.8%;margin-right: 0.7%;" 
+      type="button" class="btn-close btn-close-white" aria-label="Close">&times;</button>
+    </div>
+    
+
       <div class="body" >
 
         <div class="modal" id="modal">
@@ -47,8 +72,8 @@
     
         </div>
 
-        <!-- <iframe src="http://128.226.74.127:443/" id="iframe" class="iframe" frameborder="0"></iframe> -->
-        <iframe src="http://localhost/" id="iframe" class="iframe" frameborder="0"></iframe>
+        <iframe src="http://128.226.74.127:443/" id="iframe" class="iframe" frameborder="0"></iframe>
+        <!-- <iframe src="http://localhost/" id="iframe" class="iframe" frameborder="0"></iframe> -->
 
         
         <div class="smartcollator" id="smartcollator" style="display: none;">
