@@ -13,7 +13,7 @@
 </head>
 
 <body style="background-color: #dfe3f8;">
-  <div id="overlay"></div>
+    <!-- <div id="overlay"></div> -->
     <div class="container2">
         <img src="./iA_Logo.png" style="float: right; margin-top: 0.2%;" width="100" height="50" alt="">
         <h3 style="margin-left: 42%;margin-top: 1%;" class="heading">Machine Emulator Web UI</h3>
@@ -31,23 +31,24 @@
     </div> -->
 
     <div class="navbar">
-      <a class="active" onclick="closebtn()" href="javascript:void(0)">Home</a>
-      <div class="subnav">
-        <button class="subnavbtn">Station Testing<i class="fa fa-caret-down" style="margin-left: 8px;"></i></button>
-        <div class="subnav-content">
-          <a href="javascript:void(0)" onclick="EvtEvent()">SmartPod Station</a>
-          <a href="javascript:void(0)" onclick="EvtCollate()">SmartCollator Station</a>
-          <a href="javascript:void(0)" onclick="">Manual Fill</a>
-          <a href="javascript:void(0)" onclick="">Manual Pack</a>
-          <a href="javascript:void(0)" onclick="">Auto Pack</a>
-          <a href="javascript:void(0)" onclick="">Semi Auto Pack</a>
+        <a class="active" onclick="closebtn()" href="javascript:void(0)">Home</a>
+        <div class="subnav">
+            <button class="subnavbtn">Station Testing<i class="fa fa-caret-down" style="margin-left: 8px;"></i></button>
+            <div class="subnav-content">
+                <a href="javascript:void(0)" onclick="on()">SmartPod Station</a>
+                <!-- <a href="javascript:void(0)" onclick="EvtEvent()">SmartPod Station</a> -->
+                <a href="javascript:void(0)" onclick="EvtCollate()">SmartCollator Station</a>
+                <a href="javascript:void(0)" onclick="">Manual Fill</a>
+                <a href="javascript:void(0)" onclick="">Manual Pack</a>
+                <a href="javascript:void(0)" onclick="">Auto Pack</a>
+                <a href="javascript:void(0)" onclick="">Semi Auto Pack</a>
+                <a href="javascript:void(0)" onclick="ErrorLog()">Error Log</a>
+            </div>
         </div>
-      </div>
-      <a onclick="closebtn()" href="javascript:void(0)">System Testing</a>
-      <a href="javascript:void(0)" onclick="historicalDataUpload()">System Performance Monitoring</a>
-      <a href="javascript:void(0)" onclick="ConfigurableModels()">Configurable Models</a>
-      <button onclick="closebtn()" style="float: right;margin-top: 0.8%;margin-right: 0.7%;" 
-      type="button" class="btn-close btn-close-white" aria-label="Close">&times;</button>
+        <a onclick="closebtn()" href="javascript:void(0)">System Testing</a>
+        <a href="javascript:void(0)" onclick="historicalDataUpload()">System Performance Monitoring</a>
+        <a href="javascript:void(0)" onclick="ConfigurableModels()">Configurable Models</a>
+        <button onclick="closebtn()" style="float: right;margin-top: 0.8%;margin-right: 0.7%;" type="button" class="btn-close btn-close-white" aria-label="Close">&times;</button>
     </div>
     
 
@@ -71,11 +72,204 @@
             </div>
     
         </div>
+        <div>
+            <div style="width:100%">
+                <iframe src="http://localhost/" id="iframe" class="iframe" frameborder="0"></iframe>
+                <!-- <iframe src="http://128.226.74.127:443/" id="iframe" class="iframe" frameborder="0"></iframe> -->
+            </div>
+            <div id="overlay" class="my-custom-scrollbar table-wrapper-scroll-y">        
+                <table id="overlayTbl" class="overlay-table">
+                    <thead>
+                        <th>Group_ID</th>
+                        <th>NDC</th>
+                        <th>Event_Date_Time</th>
+                        <th>Notes</th>
+                        <th>
+                            <span>Status</span>
+                            <!-- <span class="close" onclick="closebtn()">&times;</span> -->
+                        </th>
 
-        <iframe src="http://128.226.74.127:443/" id="iframe" class="iframe" frameborder="0"></iframe>
-        <!-- <iframe src="http://localhost/" id="iframe" class="iframe" frameborder="0"></iframe> -->
-
-        
+                    </thead>
+                    <tbody>
+                        <tr title="Header" data-toggle="popover" data-placement="top" data-content="error is present">
+                            <td>689</td>
+                            <td>12122296977</td>
+                            <td>2021-06-23T06:01:42.000Z</td>
+                            <td>SmartPod</td>
+                            <td>Completed</td>
+                        </tr>
+                        <tr style="background-color: rgb(251, 131, 131);">
+                            <td >318</td>
+                            <td>98215939036</td>
+                            <td>2021-06-23T06:02:13.000Z</td>
+                            <td>SmartPod</td>
+                            <td>Error</td>
+                        </tr>
+                        <tr>
+                            <td>10997</td>
+                            <td>8698340582</td>
+                            <td>2021-06-23T06:02:13.000Z</td>
+                            <td>SmartPod</td>
+                            <td>Completed</td>
+                        </tr>
+                        <tr>
+                            <td>1087</td>
+                            <td>95205617122</td>
+                            <td>2021-06-23T06:02:45.000Z</td>
+                            <td>SmartPod</td>
+                            <td>Completed</td>
+                        </tr>
+                        <tr>
+                            <td>952</td>
+                            <td>95205617122</td>
+                            <td>2021-06-23T06:02:45.000Z</td>
+                            <td>SmartPod</td>
+                            <td>Completed</td>
+                        </tr>
+                        <tr>
+                          <td>346</td>
+                          <td>80064597413</td>
+                          <td>2021-06-23T06:03:48.000Z</td>
+                          <td>SmartPod</td>
+                          <td>Completed</td>
+                      </tr>
+                      <tr style="background-color: rgb(255, 4, 4);">
+                          <td >10997</td>
+                          <td>8698340582</td>
+                          <td>2021-06-23T06:02:13.000Z</td>
+                          <td>SmartPod</td>
+                          <td>Error</td>
+                      </tr>
+                      <tr>
+                          <td>1087</td>
+                          <td>95205617122</td>
+                          <td>2021-06-23T06:02:45.000Z</td>
+                          <td>SmartPod</td>
+                          <td>Completed</td>
+                      </tr>
+                      <tr>
+                          <td>1087</td>
+                          <td>24128133796</td>
+                          <td>021-06-23T06:03:16.000Z</td>
+                          <td>SmartPod</td>
+                          <td>Completed</td>
+                      </tr>
+                      <tr>
+                        <td>318</td>
+                        <td>98215939036</td>
+                        <td>2021-06-23T06:02:13.000Z</td>
+                        <td>SmartPod</td>
+                        <td>Completed</td>
+                    </tr>
+                    <tr>
+                        <td>10997</td>
+                        <td>8698340582</td>
+                        <td>2021-06-23T06:02:13.000Z</td>
+                        <td>SmartPod</td>
+                        <td>Completed</td>
+                    </tr>
+                    <tr style="background-color: rgb(246, 90, 90);">
+                        <td>1087</td>
+                        <td>95205617122</td>
+                        <td>2021-06-23T06:02:45.000Z</td>
+                        <td>SmartPod</td>
+                        <td>Error</td>
+                    </tr>
+                    <tr>
+                        <td>952</td>
+                        <td>24128133796</td>
+                        <td>021-06-23T06:03:16.000Z</td>
+                        <td>SmartPod</td>
+                        <td>Completed</td>
+                    </tr>
+                    <tr>
+                      <td>318</td>
+                      <td>98215939036</td>
+                      <td>2021-06-23T06:02:13.000Z</td>
+                      <td>SmartPod</td>
+                      <td>Completed</td>
+                  </tr>
+                  <tr style="background-color: rgb(251, 131, 131);">
+                      <td>10997</td>
+                      <td>8698340582</td>
+                      <td>2021-06-23T06:02:13.000Z</td>
+                      <td>SmartPod</td>
+                      <td>Error</td>
+                  </tr>
+                  <tr>
+                      <td>1087</td>
+                      <td>95205617122</td>
+                      <td>2021-06-23T06:02:45.000Z</td>
+                      <td>SmartPod</td>
+                      <td>Completed</td>
+                  </tr>
+                  <tr>
+                      <td>1087</td>
+                      <td>24128133796</td>
+                      <td>021-06-23T06:03:16.000Z</td>
+                      <td>SmartPod</td>
+                      <td>Completed</td>
+                  </tr>
+                  <tr>
+                    <td>318</td>
+                    <td>98215939036</td>
+                    <td>2021-06-23T06:02:13.000Z</td>
+                    <td>SmartPod</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>10997</td>
+                    <td>8698340582</td>
+                    <td>2021-06-23T06:02:13.000Z</td>
+                    <td>SmartPod</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>1087</td>
+                    <td>95205617122</td>
+                    <td>2021-06-23T06:02:45.000Z</td>
+                    <td>SmartPod</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                    <td>1087</td>
+                    <td>24128133796</td>
+                    <td>021-06-23T06:03:16.000Z</td>
+                    <td>SmartPod</td>
+                    <td>Completed</td>
+                </tr>
+                <tr>
+                  <td>318</td>
+                  <td>98215939036</td>
+                  <td>2021-06-23T06:02:13.000Z</td>
+                  <td>SmartPod</td>
+                  <td>Completed</td>
+              </tr>
+              <tr>
+                  <td>10997</td>
+                  <td>8698340582</td>
+                  <td>2021-06-23T06:02:13.000Z</td>
+                  <td>SmartPod</td>
+                  <td>Completed</td>
+              </tr>
+              <tr>
+                  <td>1087</td>
+                  <td>95205617122</td>
+                  <td>2021-06-23T06:02:45.000Z</td>
+                  <td>SmartPod</td>
+                  <td>Completed</td>
+              </tr>
+              <tr>
+                  <td>1087</td>
+                  <td>24128133796</td>
+                  <td>021-06-23T06:03:16.000Z</td>
+                  <td>SmartPod</td>
+                  <td>Completed</td>
+              </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>        
         <div class="smartcollator" id="smartcollator" style="display: none;">
             <h4 style="margin-left:72%;margin-top: 0.5%;font-family: 'Poppins', sans-serif; font-size: 18px;font-weight: bold;">SmartCollator Station</h4>
             <p style="float:right; width:40.5%; margin-right: 0.5%;" id="showCollateData"></p>
@@ -132,7 +326,7 @@
         </div>
 
         <div class="historicaldataupload" id="historicaldataupload" style="display: none;">
-            <h3 style="PADDING-TOP: 3%;font-family: 'Poppins', sans-serif; font-size: 18px;font-weight: bold;">Historical Data Upload</h3>
+            <h3 style="PADDING-TOP: 3%;font-family: 'Poppins', sans-serif; font-size: 18px;font-weight: bold;">System Performance Monitoring</h3>
             <div class="uploadfile">
                 <!-- <br> -->
                 <input type="file" class="btn" id="fileUpload" accept=".xlsx, .xls, .csv" />

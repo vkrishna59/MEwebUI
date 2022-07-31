@@ -53,9 +53,12 @@
 
   }
 
-  td,
+  
   th {
     padding: 15px 20px;
+    text-align: center;
+  }
+  td{
     text-align: center;
   }
 
@@ -228,18 +231,7 @@
     padding: 10px 15px;
   } */
 
-  #overlay{
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    visibility: hidden;
-
-  }
-
-  .table1{
+.table1 {
     width: 30%;
   }
   .caption {
@@ -322,4 +314,41 @@
   
   .subnav:hover .subnav-content {
     display: block;
+}
+
+#overlay {
+    position: fixed;
+    display: none;
+    width: 33%;
+    left: 67%;
+    height: 81%;
+    top: 19%;
+    bottom: 0;
+    z-index: 20000;
+    text-align: center;
+    border: 0.1px solid black;
+    /* cursor: pointer; */
+}
+
+.overlay-table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    border: 0.3px solid black;
+}
+
+.overlay-table td,
+th {
+    text-align: center;
+    padding: 8px;
+}
+
+
+.my-custom-scrollbar {
+  position: relative;
+  height: 200px;
+  overflow: auto;
   }
+.table-wrapper-scroll-y {
+display: block;
+}

@@ -1,8 +1,8 @@
 window.onload = function () {
     console.log("started the application >>>");
-    setInterval(smartPodUpdate,5000); 
-    setInterval(ControlPanelThread,10000);
-    setInterval(smartcollatorUpdate,5000);
+    // setInterval(smartPodUpdate,5000); 
+    // setInterval(ControlPanelThread,10000);
+    // setInterval(smartcollatorUpdate,5000);
 }
 
 /* Author : Sai Krishna */
@@ -26,10 +26,10 @@ for (i = 0; i < acc.length; i++){
 const EvtCollate = () => {
     console.log("Hello")
     var divContainer = document.getElementById("iframe");
-    divContainer.style.width="58%"
+    divContainer.style.width="100%"
 
     var divContainer = document.getElementById("smartcollator");
-    divContainer.style.display="block"
+    divContainer.style.display="none"
 
     var SmartPod=document.getElementById("SmartPod")
     SmartPod.style.display="none"
@@ -81,7 +81,9 @@ const EvtCollate = () => {
           }
       }
       // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-      var divContainer = document.getElementById("showCollateData");
+      // var divContainer = document.getElementById("showCollateData");
+      var divContainer =document.getElementById("overlay")
+      divContainer.style.display = "block";
       divContainer.innerHTML = "";
       divContainer.appendChild(table);
       })
@@ -126,7 +128,9 @@ const EvtCollate = () => {
             }
         }
         // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-        var divContainer = document.getElementById("showCollateData");
+        // var divContainer = document.getElementById("showCollateData");
+        var divContainer =document.getElementById("overlay")
+        divContainer.style.display = "block";
         divContainer.innerHTML = "";
         divContainer.appendChild(table);
         })
@@ -136,10 +140,10 @@ const EvtCollate = () => {
     };
     const EvtEvent = () => {
         var divContainer = document.getElementById("iframe");
-        divContainer.style.width="60%"
+        divContainer.style.width="100%"
 
         var h=document.getElementById("SmartPod")
-        h.style.display="block"
+        h.style.display="none"
 
         var smartcollator = document.getElementById("smartcollator");
         smartcollator.style.display="none"
@@ -190,7 +194,9 @@ const EvtCollate = () => {
               }
           }
           // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-          var divContainer = document.getElementById("showData");
+          // var divContainer = document.getElementById("showData");
+          var divContainer =document.getElementById("overlay")
+          divContainer.style.display = "block";
           divContainer.innerHTML = "";
           divContainer.appendChild(table);
           })
@@ -236,7 +242,8 @@ const EvtCollate = () => {
                 }
             }
             // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
-            var divContainer = document.getElementById("showData");
+            var divContainer =document.getElementById("overlay")
+            divContainer.style.display = "block";
             divContainer.innerHTML = "";
             divContainer.appendChild(table);
             })
@@ -327,6 +334,9 @@ const EvtCollate = () => {
         historicaldataupload.style.display="none"
 
         var ResolveErrors = document.getElementById("ResolveErrors");
+        ResolveErrors.style.display="none"
+
+        var ResolveErrors = document.getElementById("overlay");
         ResolveErrors.style.display="none"
 
         var acc = document.querySelectorAll('a');
@@ -619,33 +629,35 @@ const EvtCollate = () => {
 /* Author : Sai Krishna */
 var Alert = new CustomAlert();
 
-function submitted() {
-    fetch("http://localhost:3000/AllEvtError", {
+function downloadReport() {
+  let date = document.getElementById('date1').value
+  console.log(date)
+  console.log("http://localhost:3000/AllEvtError/"+date);
+    fetch("http://localhost:3000/AllEvtError/"+date, {
       method: "GET", // *GET, POST, PUT, DELETE, etc.
     })
     .then((response) => {
-      console.log("Calling delEvtError API");
+      console.log("Calling AllEvtError API");
       console.log(response);
       return response.json();
     })
     .then((data) => {
       console.log("Data For Excel",data);
-      convertJSONtoExcel(data, 'Evt Error Log')
-      let date = document.getElementById('date1').value
-      console.log(date)
+      convertJSONtoExcel(data,date, 'Evt Error Log')
+      
     })
     .catch((err) => {
       console.log(err);
     });
 }
 
-function convertJSONtoExcel(data, title) {
+function convertJSONtoExcel(data,date, title) {
     var arrData = typeof data != 'object' ? JSON.parse(data) : data;
 
     var CSV = '';
     //Set Report title in first row or line
 
-    CSV += title+" at "+new Date() + '\r\n';
+    CSV += title+" at "+date + '\r\n';
     // CSV += new Date() + '\n\n'
 
     //This condition will generate the Label/Header
@@ -710,3 +722,151 @@ function convertJSONtoExcel(data, title) {
     link.click();
     document.body.removeChild(link);
 }
+
+function on() {
+    document.getElementById("overlay").style.display = "block";
+    // console.log("EvtEvent Data  -->", data)
+
+    var col = []
+    var data = [{
+            "Group_ID": "689",
+            "NDC": "12122296977",
+            "Event_Date_Time": "2021-06-23T06:01:10.000Z",
+            "Notes": "SmartPod",
+            "Status": "Completed"
+        },
+        {
+            "Group_ID": "318",
+            "NDC": "98215939036",
+            "Event_Date_Time": "2021-06-23T06:01:42.000Z",
+            "Notes": "SmartPod",
+            "Status": "Completed"
+        },
+        {
+            "Group_ID": "10997",
+            "NDC": "8698340582",
+            "Event_Date_Time": "2021-06-23T06:02:13.000Z",
+            "Notes": "SmartPod",
+            "Status": "Completed"
+        },
+        {
+            "Group_ID": "1087",
+            "NDC": "95205617122",
+            "Event_Date_Time": "2021-06-23T06:02:45.000Z",
+            "Notes": "SmartPod",
+            "Status": "Completed"
+        },
+        {
+            "Group_ID": "952",
+            "NDC": "24128133796",
+            "Event_Date_Time": "2021-06-23T06:03:16.000Z",
+            "Notes": "SmartPod",
+            "Status": "Completed"
+        }
+    ]
+    console.log("EvtEvent Data  -->", data)
+
+    // for (var i = 0; i < data.length; i++) {
+    //     for (var key in data[i]) {
+    //         if (col.indexOf(key) === -1) {
+    //             col.push(key);
+    //         }
+    //     }
+    // }
+
+    // // CREATE DYNAMIC TABLE.
+    // var table = document.createElement("table");
+    // // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+    // var tr = table.insertRow(-1); // TABLE ROW.
+    // for (var i = 0; i < col.length; i++) {
+    //     var th = document.createElement("th"); // TABLE HEADER.
+    //     th.style['background-color'] = '#66b3cc'
+    //     th.innerHTML = col[i];
+    //     tr.appendChild(th);
+    // }
+    // // ADD JSON DATA TO THE TABLE AS ROWS.
+    // for (var i = 0; i < data.length; i++) {
+    //     tr = table.insertRow(-1);
+    //     for (var j = 0; j < col.length; j++) {
+    //         var tabCell = tr.insertCell(-1);
+    //         tabCell.innerHTML = data[i][col[j]];
+    //     }
+    // }
+    // console.log(table)
+    //     // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+    // var divContainer = document.getElementById("overlay");
+    // divContainer.innerHTML = "";
+    // divContainer.appendChild(table);
+
+
+}
+
+
+const ErrorLog = () => {
+  console.log("Hello")
+  var divContainer = document.getElementById("iframe");
+  divContainer.style.width="100%"
+
+  var divContainer = document.getElementById("smartcollator");
+  divContainer.style.display="none"
+
+  var SmartPod=document.getElementById("SmartPod")
+  SmartPod.style.display="none"
+
+  var ConfiguarbleModels = document.getElementById("ConfiguarbleModels");
+  ConfiguarbleModels.style.display="none"
+
+  var divContainer = document.getElementById("historicaldataupload");
+  divContainer.style.display="none"
+
+  var ResolveErrors = document.getElementById("ResolveErrors");
+  ResolveErrors.style.display="none"
+
+  var divContainer = document.getElementById("showCollateData");
+
+  fetch("http://localhost:3000/AllEvtError", {
+    method: "GET", // *GET, POST, PUT, DELETE, etc.
+  })
+    .then((response) => {
+      console.log("Calling AllEvtError API");
+      console.log(response);
+      return response.json();
+    })
+    .then((data) => {
+      console.log("AllEvtError Data  -->",data)
+      var col=[]
+      for (var i = 0; i < data.length; i++) {
+          for (var key in data[i]) {
+              if (col.indexOf(key) === -1) {
+                  col.push(key);
+              }
+          }
+      }
+     // CREATE DYNAMIC TABLE.
+     var table = document.createElement("table");
+     // CREATE HTML TABLE HEADER ROW USING THE EXTRACTED HEADERS ABOVE.
+     var tr = table.insertRow(-1);                   // TABLE ROW.
+    for (var i = 0; i < col.length; i++) {
+        var th = document.createElement("th");      // TABLE HEADER.
+        th.innerHTML = col[i];
+        tr.appendChild(th);
+    }
+    // ADD JSON DATA TO THE TABLE AS ROWS.
+    for (var i = 0; i < data.length; i++) {
+        tr = table.insertRow(-1);
+        for (var j = 0; j < col.length; j++) {
+            var tabCell = tr.insertCell(-1);
+            tabCell.innerHTML = data[i][col[j]];
+        }
+    }
+    // FINALLY ADD THE NEWLY CREATED TABLE WITH JSON DATA TO A CONTAINER.
+    // var divContainer = document.getElementById("showCollateData");
+    var divContainer =document.getElementById("overlay")
+    divContainer.style.display = "block";
+    divContainer.innerHTML = "";
+    divContainer.appendChild(table);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  };
