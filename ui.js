@@ -5,6 +5,7 @@ window.onload = function () {
     // setInterval(smartcollatorUpdate,5000);
 }
 
+
 /* Author : Sai Krishna */
 document.addEventListener("DOMContentLoaded", function(e) {
   var acc = document.querySelectorAll('a');
@@ -20,7 +21,6 @@ for (i = 0; i < acc.length; i++){
   });
 }
 });
-
 
 
 const EvtCollate = () => {
@@ -255,7 +255,7 @@ const EvtCollate = () => {
     function ConfigurableModels(){
 
         var divContainer = document.getElementById("iframe");
-        divContainer.style.width="70%"
+        divContainer.style.width="70.5%"
 
         var ConfiguarbleModels = document.getElementById("ConfiguarbleModels");
         ConfiguarbleModels.style.display="block"
@@ -278,7 +278,7 @@ const EvtCollate = () => {
     function historicalDataUpload () {
 
         var divContainer = document.getElementById("iframe");
-        divContainer.style.width="70%"
+        divContainer.style.width="71.5%"
 
         var historicaldataupload = document.getElementById("historicaldataupload");
         historicaldataupload.style.display="block"
@@ -870,3 +870,24 @@ const ErrorLog = () => {
       console.log(err);
     });
   };
+
+
+  function errorlogReportDownload() {
+    var divContainer = document.getElementById("iframe");
+    divContainer.style.width="85%"
+
+    var ResolveErrors = document.getElementById("ResolveErrors");
+    ResolveErrors.style.display="block"
+
+    var smartcollator = document.getElementById("smartcollator");
+    smartcollator.style.display="none"
+
+    var ConfiguarbleModels = document.getElementById("ConfiguarbleModels");
+    ConfiguarbleModels.style.display="none"
+
+    var SmartPod=document.getElementById("SmartPod")
+    SmartPod.style.display="none"
+
+    var historicaldataupload = document.getElementById("historicaldataupload");
+    historicaldataupload.style.display="none"
+}
