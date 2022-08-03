@@ -12,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <script>
         $(document).ready(function() {
             $('[data-toggle="popover"]').popover({})
@@ -331,32 +332,40 @@
             </tbody>
           </table>
           <hr>
-          <div class="uploadfile" style="margin-top:18%; margin-left:72%;margin-right:1%;height: 20%;">
-            <h3 style="margin-left:38%;margin-top:9px;">Upload File</h3>
+          <div class="uploadfile" style="margin-top:25%; margin-left:72%;margin-right:1%;height: 26%;">
+            <h3 style="margin-left:33%;margin-top:9px;">Upload File</h3>
             <br>
             <input type="file" class="form-control" id="fileUpload" accept=".xlsx, .xls, .csv" />
             <br>
             <br>
-            <div style="padding-left: 32%;">
+            <div style="padding-left: 26%;">
               <button type="button" id="btn" onclick="Upload()">Upload</button>
               <button type="button" id="btn">Generate</button>
               <button type="button" id="btn">Export</button>
             </div>
+            <br>
+              <!-- <div id="myBar" class="w3-light-grey" style="background-color: rgb(0, 142, 24) !important;margin-left: 10%;max-width: 80%;">
+                <div  style="display: none;max-height: 20%;height: 15%;background-color: aquamarine;">20%</div>
+              </div> -->
           </div>
         </div>
 
         <div class="historicaldataupload" id="historicaldataupload" style="display: none;">
             <!-- <h3 style="PADDING-TOP: 3%;font-family: 'Poppins', sans-serif; font-size: 18px;font-weight: bold;">System Performance Monitoring</h3> -->
-            <div class="uploadfile" style="margin-top:8px;margin-right:1%;height: 23%;">
-              <h3 style="margin-left:38%;margin-top:9px;">Upload File</h3>
+            <div class="uploadfile" style="margin-top:8px;margin-right:1%;height: 30%;">
+              <h3 style="margin-left:33%;margin-top:9px;">Upload File</h3>
               <br>
               <input type="file" class="form-control" id="fileUpload" accept=".xlsx, .xls, .csv" />
               <br>
               <br>
-              <div style="padding-left: 32%;">
+              <div style="padding-left: 23%;">
                 <button type="button" id="btn" onclick="Upload()">Upload</button>
                 <button type="button" id="btn">Generate</button>
                 <button type="button" id="btn">Export</button>
+              </div>
+              <br>
+              <div id="myBar" class="w3-light-grey" style="background-color: rgb(0, 142, 24) !important;margin-left: 10%;max-width: 80%;">
+                <div  style="display: none;max-height: 20%;height: 15%;background-color: aquamarine;">20%</div>
               </div>
             </div>
         </div>
@@ -418,16 +427,18 @@
             </div>
             <hr style="height:1px;border-width:0;color:rgb(0, 0, 0);background-color:rgb(0, 0, 0)">
             <h3 style="font-family: 'Poppins', sans-serif; font-size: 18px;font-weight: bold;">Download Error Log Report</h3> -->
-            <div style="margin-left: 85%; height: 20%;" class="uploadfile" >
-              <h4 style="padding-top: 15px; ">Download Error Report</h4>
+            <div style="margin-left:73.5%;margin-right: 1%; height: 21%;width: 25.5%;margin-top: 1%;" class="uploadfile" >
+              <h4 style="padding-top: 15px; margin-left: 23%">Download Error Report</h4>
               <hr style="height:1px;border-width:0;color:rgb(0, 0, 0);background-color:rgb(0, 0, 0)">
-              <input type="date" id="date1">
+              <input style="margin-left: 30%" type="date" id="date1">
               </br>
-              <button type="button" class="btn btn-primary" onclick="downloadReport()" style="margin-top: 8px">Submit</button>
+              <button type="button" class="btn btn-primary" onclick="downloadReport()" style="margin-top: 8px;margin-left: 38%">Submit</button>
             </div>
-            <div style="margin-left: 88%;" >
-              <h4 style="padding-top: 15px;">Download Replenishment Report</h4>
-              <button type="button" class="btn btn-primary" onclick="ReplenishmentReport()" style="margin-top: 8px">Download</button>
+            <br>
+            <div style="margin-left:73.5%;margin-right: 1%; height: 21%;width: 25.5%;margin-top: 1%;" class="uploadfile" >
+              <h4 style="padding-top: 15px; margin-left: 12%">Download Replenishment Report</h4>
+              <hr style="height:1px;border-width:0;color:rgb(0, 0, 0);background-color:rgb(0, 0, 0)">
+              <button type="button" class="btn btn-primary" onclick="ReplenishmentReport()" style="margin-top: 8px;margin-left: 37.5%">Download</button>
             </div>
         </div>
 

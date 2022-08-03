@@ -874,7 +874,7 @@ const ErrorLog = () => {
 
   function errorlogReportDownload() {
     var divContainer = document.getElementById("iframe");
-    divContainer.style.width="85%"
+    divContainer.style.width="72%"
 
     var ResolveErrors = document.getElementById("ResolveErrors");
     ResolveErrors.style.display="block"
@@ -891,3 +891,123 @@ const ErrorLog = () => {
     var historicaldataupload = document.getElementById("historicaldataupload");
     historicaldataupload.style.display="none"
 }
+
+//excel to json from uploaded fill
+function Upload() {
+  var elem = document.getElementById("myBar");  
+  elem.style.display="block" ;
+  var width = 20;
+  var id = setInterval(frame, 10);
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+    } else {
+      width++; 
+      elem.style.width = width + '%'; 
+      elem.innerHTML = width * 1  + '%';
+    }
+  }
+  //Reference the FileUpload element.
+  var fileUpload = document.getElementById("fileUpload");
+
+  //Validate whether File is valid Excel file.
+  var regex = /^([a-zA-Z0-9\s_\\.\-:])+(.xls|.xlsx)$/;
+  if (regex.test(fileUpload.value.toLowerCase())) {
+    if (typeof (FileReader) != "undefined") {
+      var reader = new FileReader();
+
+      //For Browsers other than IE.
+      if (reader.readAsBinaryString) {
+        reader.onload = function (e) {
+          //console.log(e.target.result);
+          ProcessExcel(e.target.result);
+        };
+        reader.readAsBinaryString(fileUpload.files[0]);
+      } else {
+        //For IE Browser.
+        reader.onload = function (e) {
+          var data = "";
+          var bytes = new Uint8Array(e.target.result);
+          for (var i = 0; i < bytes.byteLength; i++) {
+            data += String.fromCharCode(bytes[i]);
+          }
+          ProcessExcel(data);
+        };
+        reader.readAsArrayBuffer(fileUpload.files[0]);
+      }
+    } else {
+      alert("This browser does not support HTML5.");
+    }
+  } else {
+    alert("Please upload a valid Excel file.");
+  }
+};
+function ProcessExcel(data) {
+  //Read the Excel File data.
+  var workbook = XLSX.read(data, {
+    type: 'binary'
+  });
+
+  //Fetch the name of First Sheet.
+  var firstSheet = workbook.SheetNames[0];
+
+  //Read all rows from First Sheet into an JSON array.
+  var excelRows = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[firstSheet]);
+
+  //Create a HTML Table element.
+  var table = document.createElement("table");
+  table.border = "1";
+
+  //Add the header row.
+  var row = table.insertRow(-1);
+
+  //Add the header cells.
+  var headerCell = document.createElement("TH");
+  headerCell.innerHTML = "OrderType";
+  row.appendChild(headerCell);
+
+  headerCell = document.createElement("TH");
+  headerCell.innerHTML = "Count of Orders";
+  row.appendChild(headerCell);
+
+
+
+  //Add the data rows from Excel file.
+  for (var i = 0; i < excelRows.length; i++) {
+    //Add the data row.
+    //var row = table.insertRow(-1);
+    // <input type="text" id="mix_count" />
+    //                 <input type="text" id="autocol_count" />
+    //                 <input type="text" id="autosingle_count" />
+    //                 <input type="text" id="automanual_count" />
+    //                 <input type="text" id="autopouch_count" />
+    //Add the data cells.
+    //var cell = row.insertCell(-1);
+    // cell.innerHTML = excelRows[i].OrderType;
+    console.log(excelRows[i].OrderType);
+    console.log(excelRows[i].Count);
+    if (excelRows[i].OrderType === "Mix") {
+      document.getElementById("mix_count").value = excelRows[i].Count;
+    }
+    else if (excelRows[i].OrderType === "AutoCol") {
+      document.getElementById("autocol_count").value = excelRows[i].Count;
+    }
+    else if (excelRows[i].OrderType === "AutoSingle") {
+      document.getElementById("autosingle_count").value = excelRows[i].Count;
+    }
+    else if (excelRows[i].OrderType === "AutoManual") {
+      document.getElementById("automanual_count").value = excelRows[i].Count;
+    }
+    else if (excelRows[i].OrderType === "AutoPouch") {
+      document.getElementById("autopouch_count").value = excelRows[i].Count;
+    }
+
+    // cell = row.insertCell(-1);
+    // cell.innerHTML = excelRows[i].Count;
+
+  }
+  console.log(table);
+  //var dvExcel = document.getElementById("dvExcel");
+  //dvExcel.innerHTML = "";
+  // dvExcel.appendChild(table);
+};
